@@ -1,4 +1,4 @@
-module github.com/farmerworking/gohbase
+module github.com/tsuna/gohbase
 
 go 1.24.3
 
