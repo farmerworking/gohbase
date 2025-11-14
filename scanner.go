@@ -305,6 +305,7 @@ func (s *scanner) update(resp *pb.ScanResponse, region hrpc.RegionInfo) {
 	if !resp.GetMoreResultsInRegion() {
 		// we are done with this region, prepare scan for next region
 		s.curRegionScannerID = noScannerID
+		fmt.Printf("set to no scanner ID when update scan response\n");
 
 		// Normal Scan
 		if !s.rpc.Reversed() {
@@ -397,6 +398,7 @@ func (s *scanner) openRegionScanner(scannerId uint64) {
 		panic(fmt.Sprintf("should not happen: previous region scanner was not closed"))
 	}
 	s.curRegionScannerID = scannerId
+	fmt.Printf("set scanner id to %d when open region scanner \n", scannerId);
 }
 
 func (s *scanner) closeRegionScanner() {
@@ -424,6 +426,7 @@ func (s *scanner) closeRegionScanner() {
 		go s.SendRPC(rpc)
 	}
 	s.curRegionScannerID = noScannerID
+	fmt.Printf("set to no scanner id when close \n");
 }
 
 // renews a scanner by resending scan request with renew = true
